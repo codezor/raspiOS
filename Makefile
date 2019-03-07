@@ -31,23 +31,23 @@ IMG_NAME=kernel.img
 
 build: $(OBJECTS) $(HEADERS)
 	echo $(OBJECTS)
-    $(CC) -T linker.ld -o $(IMG_NAME) $(LFLAGS) $(OBJECTS)
+	$(CC) -T linker.ld -o $(IMG_NAME) $(LFLAGS) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: $(KER_SRC)/%.c
-    mkdir -p $(@D)
-    $(CC) $(CFLAGS) -I$(KER_SRC) -I$(KER_HEAD) -c $< -o $@ $(CSRCFLAGS)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -I$(KER_SRC) -I$(KER_HEAD) -c $< -o $@ $(CSRCFLAGS)
 
 $(OBJ_DIR)/%.o: $(KER_SRC)/%.S
-    mkdir -p $(@D)
-    $(CC) $(CFLAGS) -I$(KER_SRC) -c $< -o $@
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -I$(KER_SRC) -c $< -o $@
 
 $(OBJ_DIR)/%.o: $(COMMON_SRC)/%.c
-    mkdir -p $(@D)
-    $(CC) $(CFLAGS) -I$(KER_SRC) -I$(KER_HEAD) -c $< -o $@ $(CSRCFLAGS)
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -I$(KER_SRC) -I$(KER_HEAD) -c $< -o $@ $(CSRCFLAGS)
 
 clean:
-    rm -rf $(OBJ_DIR)
-    rm $(IMG_NAME)
+	rm -rf $(OBJ_DIR)
+	rm $(IMG_NAME)
 
 run: build
-    qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel kernel.img
+	qemu-system-arm -m 256 -M raspi2 -serial stdio -kernel kernel.img
