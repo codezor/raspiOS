@@ -71,7 +71,7 @@ void uart_init()
     delay(150); // delay
 
     mmio_write(GPPUDCLK0, (1 << 14 ) | (1 << 15) ); // write to the clock
-    dealy(150);
+    delay(150);
 
     mmio_write(GPPUDCLK0, 0x00000000);
 
@@ -92,13 +92,13 @@ void uart_init()
 // Put a charachter in the uart 
 void uart_putc(unsigned char c)
 {
-    while (mmio_read(UART0_FR) & (1 << 5) ) { }
-    mmio_write(UART-_DR, c);
+    while(mmio_read(UART0_FR) & (1 << 5) ) { }
+    mmio_write(UART0_DR, c);
 }
 // get a char from the uart
 unsigned char uart_getc()
 {
-     while ( mmio_read(UART0_FR) & (1 << 4) ) { }
+    while( mmio_read(UART0_FR) & (1 << 4) ) { }
     return mmio_read(UART0_DR);
 }
 
