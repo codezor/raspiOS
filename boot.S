@@ -20,7 +20,7 @@ _start:
     b       2f
 
 1: 
-    stmaia r4!, {r5-r8} 
+    stmia r4!, {r5-r8} 
 
 
 2: 
