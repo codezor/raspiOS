@@ -6,7 +6,7 @@
 #include <stdint.h>
 
 //  Memory map wrtite to the IO on the rasberry pi
-static inline void mmio_write(uint32_t reg, uint32_t date)
+static inline void mmio_write(uint32_t reg, uint32_t data)
 {
     *(volatile uint32_t*)reg = data;
 
@@ -18,11 +18,11 @@ static inline uint32_t mmioread(uint32_t reg)
     return *(volatile uint32_t*)reg;
 }
 
-// Delay for memory mapped IO opperations 
+// Loop <delay> times in a way that the compiler won't optimize away
 static inline void delay(int32_t count)
 {
-    asm volitile ("__delay_%=: subs %[count], %[count], #1; bne __delay_%=\n"
-    : "=r"(count): [count]"0"(count) : "cc");
+   asm volatile("__delay_%=: subs %[count], %[count], #1; bne __delay_%=\n"
+            : "=r"(count): [count]"0"(count) : "cc");
 }
 
 
