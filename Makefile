@@ -1,5 +1,5 @@
 # Don't use normal gcc, use the arm cross compiler
-CC = ./gcc-arm-none-eabi-6-2017-q2-update/bin/arm-none-eabi-gcc
+CC = gcc
 
 # Set any constants based on the raspberry pi model.  Version 1 has some differences to 2 and 3
 ifeq ($(RASPI_MODEL),1)
