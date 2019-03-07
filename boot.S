@@ -1,6 +1,7 @@
-.section ".text.boot"       ;setting up the C Runtime enviorment
+.section ".text.boot"       
 
-.global _start              ;setting up the C Runtime enviorment
+.global _start             
+
 
 _start:
     mrc p15, #0, r1, c0, c0, #5
