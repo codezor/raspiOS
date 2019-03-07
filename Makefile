@@ -30,7 +30,7 @@ IMG_NAME=kernel.img
 
 
 build: $(OBJECTS) $(HEADERS)
-    echo $(OBJECTS)
+	echo $(OBJECTS)
     $(CC) -T linker.ld -o $(IMG_NAME) $(LFLAGS) $(OBJECTS)
 
 $(OBJ_DIR)/%.o: $(KER_SRC)/%.c
